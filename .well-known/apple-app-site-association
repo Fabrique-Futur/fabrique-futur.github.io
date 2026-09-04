@@ -4,8 +4,10 @@
       {
         "appIDs": ["VWH2FKV78Q.com.fabriquefutur.loco"],
         "components": [
-          { "/": "/t/*", "comment": "a trip" },
-          { "/": "/u/*", "comment": "a person" }
+          { "/": "/loco-share/t/*", "comment": "a trip" },
+          { "/": "/loco-share/u/*", "comment": "a person" },
+          { "/": "/t/*", "comment": "a trip, at the address links used before the app moved to /loco-share/" },
+          { "/": "/u/*", "comment": "a person, likewise" }
         ]
       }
     ]

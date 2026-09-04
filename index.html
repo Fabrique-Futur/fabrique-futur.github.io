@@ -1,43 +1,85 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Loco</title>
-    <meta name="description" content="Loco — the plan for a trip with several people, several cities and one answer to “where is everyone”." />
+    <title>Fabrique Futur</title>
+    <meta name="description" content="Fabrique Futur — a software company." />
     <meta name="theme-color" content="#0d1017" />
     <meta name="color-scheme" content="dark" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="icon" href="/icon-192.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <!--
-      Generic on purpose. GitHub Pages is a static host: it cannot render a
-      different <meta> per /t/<slug>, and a crawler never runs the app, so a
-      per-trip preview would have to be a lie or a blank. These say what Loco is
-      and show a card that looks deliberate when a link is pasted into WhatsApp
-      or Telegram. Per-trip previews arrive with the domain move — see README.
-    -->
-    <meta property="og:site_name" content="Loco" />
-    <meta property="og:title" content="Loco — where everyone is, day by day" />
-    <meta property="og:description" content="One plan for a trip with several people and several cities. Share one link and everybody sees the same answer to “where is everyone”." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1017'/%3E%3Ctext x='16' y='22' font-family='-apple-system,Segoe UI,Roboto,sans-serif' font-size='15' font-weight='600' fill='%234cc9f0' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" />
+    <meta property="og:site_name" content="Fabrique Futur" />
+    <meta property="og:title" content="Fabrique Futur" />
+    <meta property="og:description" content="A software company." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fabrique-futur.github.io/" />
-    <meta property="og:locale" content="en" />
-    <meta property="og:locale:alternate" content="ru" />
-    <meta property="og:image" content="https://fabrique-futur.github.io/og.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Loco — where everyone is, day by day" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Loco — where everyone is, day by day" />
-    <meta name="twitter:description" content="One plan for a trip with several people and several cities. Share one link and everybody sees the same answer to “where is everyone”." />
-    <meta name="twitter:image" content="https://fabrique-futur.github.io/og.png" />
-    <meta name="twitter:image:alt" content="Loco — where everyone is, day by day" />
-    <script type="module" crossorigin src="/assets/index-CiVH3ETo.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BoR8IMaK.css">
+    <style>
+      /* The Loco palette, because it is the house palette — tokens.css in the
+         loco repo, which is DesignSystem.swift. No framework: this page is
+         eleven elements and it should stay that way. */
+      :root {
+        color-scheme: dark;
+        --bg: #0d1017;
+        --tx: #e8ecf5;
+        --tx2: #9aa6bf;
+        --tx3: #67728c;
+        --line: #242c3d;
+        --accent: #4cc9f0;
+        --f: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; }
+      body {
+        background: var(--bg);
+        color: var(--tx);
+        font: 16px/1.55 var(--f);
+        -webkit-font-smoothing: antialiased;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+      main { max-width: 30rem; width: 100%; }
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 8vw, 2.75rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      p.what { margin: 10px 0 0; color: var(--tx2); }
+      .rule { height: 1px; background: var(--line); margin: 28px 0; border: 0; }
+      a.product {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        padding: 2px 0;
+      }
+      a.product .name { color: var(--accent); font-weight: 600; }
+      a.product .name::after { content: " \2192"; }
+      a.product:hover .name, a.product:focus-visible .name { text-decoration: underline; }
+      a.product .line { color: var(--tx3); font-size: 15px; margin-top: 2px; }
+      a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <main>
+      <h1>Fabrique Futur</h1>
+      <p class="what">A software company.</p>
+      <hr class="rule" />
+      <a class="product" href="/loco-share/">
+        <div class="name">Loco</div>
+        <div class="line">One plan for a trip with several people and several cities.</div>
+      </a>
+    </main>
+    <script>
+      // Loco used to be served from this root, so links exist in the wild that
+      // point at it as /?t=…, /?f=… or /?k=…. This path is a real page, so it
+      // never reaches 404.html — carry those parameters into the app instead of
+      // showing a stranger a company page where they expected their trip.
+      (function () {
+        var q = new URLSearchParams(location.search);
+        if (!(q.has("t") || q.has("f") || q.has("k"))) return;
+        location.replace("/loco-share/" + location.search + location.hash);
+      })();
+    </script>
   </body>
 </html>
