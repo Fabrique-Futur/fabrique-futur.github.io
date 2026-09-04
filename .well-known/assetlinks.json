@@ -1,10 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.fabriquefutur.loco",
-      "sha256_cert_fingerprints": ["REPLACE_WITH_UPLOAD_CERT_SHA256"]
+      "sha256_cert_fingerprints": [
+        "41:76:F5:0A:F5:75:4A:E1:DD:E3:91:01:55:19:EA:D5:0A:85:72:47:80:0D:2E:98:4D:D8:D4:48:3B:77:3D:C5"
+      ]
     }
   }
 ]
