@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["VWH2FKV78Q.com.fabriquefutur.loco"],
+        "components": [
+          { "/": "/t/*", "comment": "a trip" },
+          { "/": "/u/*", "comment": "a person" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": { "apps": ["VWH2FKV78Q.com.fabriquefutur.loco"] }
+}
